@@ -5,26 +5,9 @@ import { useState } from 'react';
 import Cartao from './Cartao';
 
 function App() {
-  var [pokemons, setPokemons] = useState([
-    {
-      'name': 'bulbasaur',
-      'url': 'A leafy frog pokemon'
-    },
-    {
-      'name': 'charmander',
-      'url': 'A fire lizard pokemon'
-    },
-    {
-      'name': 'venusaur',
-      'url': 'A pokemon'
-    },
-    {
-      'name': 'charmeleon',
-      'url': 'A pokemon'
-    }
-  ]);
+  var [pokemons, setPokemons] = useState([]);
 
-  function handleNewPokemon(novoPokemon){
+  function handleNewPokemon(){
     var requestOptions = {
       method: 'GET',
       redirect: 'follow'
@@ -34,13 +17,9 @@ function App() {
       .then(response => response.text())
       .then((result) => {
         let resultado = JSON.parse(result);
-        resultado.results.map((pokemon, indice) => {
-          console.log(pokemons);
-          const add = [...pokemons, novoPokemon];
-          setPokemons(add);
-
-          return setPokemons;
-        })
+        resultado.results.map((pokemon) => {
+          return pokemons.push(pokemon);
+        });
       }
       )
       .catch(error => console.log('error', error));
