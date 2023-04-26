@@ -1,14 +1,45 @@
-import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { useState, useEffect } from 'react';
 
-function Cartao(props) {
+
+
+function Cartao({ props }) {
+
+    const [especie, setEspecie] = useState({});
+
+    function fetchData() {
+        const requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+
+
+        fetch(props[0].url, requestOptions)
+
+            .then(response => response.text())
+            .then((result) => {
+
+                let resultado = JSON.parse(result);
+                setEspecie(async (resultado) => { return resultado});
+
+
+            }
+            )
+            .catch(error => console.log('error', error));
+    }
+
+    useEffect(() => {
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
-        <Card>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-                <Card.Title>{props.pokemon.name}</Card.Title>
+        <Card key={props[1]}>
+            <Card.Img variant="top" />
+            <Card.Body >
+                <Card.Title></Card.Title>
                 <Card.Text>
-                    {props.pokemon.url}
+                    {especie.forms[0].name}
                 </Card.Text>
                 <Button variant="primary">Detalhes</Button>
             </Card.Body>
