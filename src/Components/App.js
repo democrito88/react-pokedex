@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <Nav className='bg-danger border mb-3 p-2 justify-content-center'>
-        <Row >
+        <Row>
           <Col md={3}>
             <img src={logo} alt="" width={150} />
           </Col>
@@ -34,7 +34,7 @@ function App() {
       <Container>
         <Row>
           {pokemons.map((pokemon, indice) => {
-            return <Col sm={2} key={indice}><Cartao props={pokemon} /></Col>;
+            return <Col className='mb-3' sm={2} key={indice}><Cartao props={pokemon} /></Col>;
           })}
         </Row>
       </Container>
