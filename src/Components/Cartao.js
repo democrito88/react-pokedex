@@ -3,13 +3,14 @@ import { useFetch } from "../hooks/useFetch.ts";
 
 function Cartao({ props }) {
 
-    const especie = useFetch(props.url);
-
+    const { variavel, trabalhando } = useFetch(props.url);
+    
     return (
         <Card>
-            <Card.Img variant="top" src={especie?.sprites.front_default} />
+            { trabalhando && <p>Carregando...</p>}
+            <Card.Img variant="top" src={variavel?.sprites.front_default} />
             <Card.Body >
-                <Card.Title>{especie?.name}</Card.Title>
+                <Card.Title>{variavel?.name}</Card.Title>
                 <Card.Text>
                     {}
                 </Card.Text>
