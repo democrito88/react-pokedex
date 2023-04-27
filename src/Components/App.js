@@ -15,21 +15,13 @@ function App() {
       redirect: 'follow'
     };   
 
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1", requestOptions)
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20", requestOptions)
       .then(response => response.text())
-      .then((result) => {
-        let resultado = JSON.parse(result);
-        setPokemons(resultado.results);
-        
-       
-      }
-      )
+      .then(result => setPokemons(JSON.parse(result).results))
       .catch(error => console.log('error', error));
   },
   []);
   
-
-
   return (
     <div className="App">
       <Nav className='bg-danger border mb-3 p-2 justify-content-center'>
@@ -41,8 +33,8 @@ function App() {
       </Nav>
       <Container>
         <Row>
-          {pokemons.map(async (pokemon, indice) => {
-            return await <Col sm={2} key={indice}><Cartao props={[pokemon, indice]} /></Col>;
+          {pokemons.map((pokemon, indice) => {
+            return <Col sm={2} key={indice}><Cartao props={pokemon} /></Col>;
           })}
         </Row>
       </Container>
