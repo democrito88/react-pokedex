@@ -1,9 +1,14 @@
 import { Button, Card } from "react-bootstrap";
 import { useFetch } from "../hooks/useFetch.ts";
+import { useNavigation } from '@react-navigation/native';
 
 function Cartao({ props }) {
-
+    const navigation = useNavigation();
     const { variavel, trabalhando } = useFetch(props.url);
+
+    const handleDetalhes = () => {
+        return navigation.navigate('Detalhes', {pokemon: variavel})
+    }
     
     return (
         <Card>
@@ -14,7 +19,7 @@ function Cartao({ props }) {
                 <Card.Text>
                     {}
                 </Card.Text>
-                <Button variant="primary">Detalhes</Button>
+                <Button variant="primary" onClick={handleDetalhes}>Detalhes</Button>
             </Card.Body>
         </Card>
     );
