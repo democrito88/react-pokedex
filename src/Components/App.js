@@ -4,8 +4,8 @@ import { Container, Row, Col, Nav } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Cartao from './Cartao';
 
-
 function App() {
+  
   const [pokemons, setPokemons] = useState([]);
   
   useEffect(() => {
@@ -15,7 +15,7 @@ function App() {
       redirect: 'follow'
     };   
 
-    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20", requestOptions)
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151", requestOptions)
       .then(response => response.text())
       .then(result => setPokemons(JSON.parse(result).results))
       .catch(error => console.log('error', error));
