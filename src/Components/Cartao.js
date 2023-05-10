@@ -1,10 +1,15 @@
 import { Button, Card } from "react-bootstrap";
 import { useFetch } from "../hooks/useFetch.ts";
+import { useNavigation } from '@react-navigation/native';
 
 function Cartao({ props }) {
-
+    const navigation = useNavigation();
     const { variavel, trabalhando } = useFetch(props.url);
 
+    const handleDetalhes = () => {
+        return navigation.navigate('Detalhes', {pokemon: variavel})
+    }
+    
     return (
         
         <Card>
@@ -16,7 +21,7 @@ function Cartao({ props }) {
                     <img src={"../../tipos/"+variavel?.types[0].type.name+'.webp'} width={40}/>
                     {(variavel?.types[1]) ? <img src={"../../tipos/"+variavel?.types[1]?.type.name+'.webp'} width={40}/> : ""}
                 </Card.Text>
-                <center><Button variant="primary" >Detalhes</Button></center>
+                <Button variant="primary" onClick={handleDetalhes}>Detalhes</Button>
             </Card.Body>
         </Card>
     );
