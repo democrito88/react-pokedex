@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export function useFetch<T = unknown>(url){
+export function useFetch<T = unknown>(url: string){
     const [variavel, setVariavel] = useState<T | null>(null);
     const [trabalhando, setTrabalhando] = useState(true);
     

@@ -1,27 +1,26 @@
+import React from 'react';
 import { Button, Card } from "react-bootstrap";
 import { useFetch } from "../hooks/useFetch.ts";
-import { useNavigation } from '@react-navigation/native';
+import { Link } from 'react-router-dom';
 
 function Cartao({ props }) {
-    const navigation = useNavigation();
+    console.log(props.url);
     const { variavel, trabalhando } = useFetch(props.url);
 
-    const handleDetalhes = () => {
-        return navigation.navigate('Detalhes', {pokemon: variavel})
-    }
-    
     return (
-        
         <Card>
             {trabalhando && <p>Carregando...</p>}
-            <Card.Img variant="top" src={variavel?.sprites.front_default} />
+            <Card.Img variant="top" src={variavel == null ? "" : variavel.sprites.front_default} />
             <Card.Body >
-                <Card.Title className="text-center text-capitalize" >{variavel?.name}</Card.Title>
+                <Card.Title className="text-center text-capitalize" >{variavel == null ? "" : variavel.name}</Card.Title>
                 <Card.Text className="text-center">
-                    <img src={"../../tipos/"+variavel?.types[0].type.name+'.webp'} width={40}/>
-                    {(variavel?.types[1]) ? <img src={"../../tipos/"+variavel?.types[1]?.type.name+'.webp'} width={40}/> : ""}
+                    <img src={"../../tipos/"+(variavel == null ? "" : variavel.types[0].type.name+'.webp')} width={40} alt="" />
+                    {(variavel == null ? "" : variavel.types[1]) ? <img src={"../../tipos/"+(variavel == null ? "" : variavel.types[1].type.name+'.webp')} width={40} alt="" /> : ""}
                 </Card.Text>
-                <Button variant="primary" onClick={handleDetalhes}>Detalhes</Button>
+                <Link to="/Detalhes/1" >
+                    <Button variant="primary">Detalhes</Button>
+                </Link>
+                
             </Card.Body>
         </Card>
     );
