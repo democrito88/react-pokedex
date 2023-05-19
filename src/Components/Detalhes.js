@@ -5,26 +5,30 @@ import Estatistica from './Estatistica';
 import Formas from './Formas';
 import Resumo from './Resumo';
 import { useParams } from 'react-router';
+import { useFetch } from '../hooks/useFetch';
 
 function Detalhes({props}){
     const {id} = useParams();
+    var {variavel, trabalhando} = useFetch("https://pokeapi.co/api/v2/pokemon/"+id);
+    
     return (
         <Container>
+            {trabalhando && <p>Carregando...</p>}
             <h1>Página de detalhes de {id}</h1>
             <Row>
                 <Col md={4}>
-                    <Resumo pokemon={props} />
+                    <Resumo pokemon={variavel == null ? {name: "eu"} : variavel} />
                 </Col>
                 <Col md={8}>
-                    <Estatistica pokemon={props} />
+                    <Estatistica pokemon={variavel} />
                 </Col>
             </Row>
             <Row>
                 <Col md={4}>
-                    <Formas pokemon={props} />
+                    <Formas pokemon={variavel} />
                 </Col>
                 <Col md={8}>
-                    <Dados pokemon={props} />
+                    <Dados pokemon={variavel} />
                 </Col>
             </Row>
         </Container>

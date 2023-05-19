@@ -17,7 +17,7 @@ function Cartao({ props }) {
                     <img src={"../../tipos/"+(variavel == null ? "" : variavel.types[0].type.name+'.webp')} width={40} alt="" />
                     {(variavel == null ? "" : variavel.types[1]) ? <img src={"../../tipos/"+(variavel == null ? "" : variavel.types[1].type.name+'.webp')} width={40} alt="" /> : ""}
                 </Card.Text>
-                <Link to="/Detalhes/1" >
+                <Link to={{ pathname: "/Detalhes/:id", query:{id: (variavel == null ? 1 : variavel.id)} }}>
                     <Button variant="primary">Detalhes</Button>
                 </Link>
                 
