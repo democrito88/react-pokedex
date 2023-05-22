@@ -2,15 +2,15 @@ import React from 'react';
 import {Carousel} from 'react-bootstrap';
 
 function Resumo({ pokemon }) {
-    console.log(pokemon.sprites);
    
     return (
         <>
-            <Carousel>
+            {/*<h4>{JSON.stringify(pokemon.sprites.back_default)}</h4>*/}
+            {/*<Carousel>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={pokemon.sprites.back_default}
+                        src={pokemon.sprites?.back_default}
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -21,7 +21,7 @@ function Resumo({ pokemon }) {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={pokemon.sprites.front_default}
+                        src={pokemon.sprites?.front_default}
                         alt="Second slide"
                     />
 
@@ -33,7 +33,7 @@ function Resumo({ pokemon }) {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={pokemon.sprites.front_female}
+                        src={pokemon.sprites?.front_female}
                         alt="Third slide"
                     />
 
@@ -44,8 +44,7 @@ function Resumo({ pokemon }) {
                         </p>
                     </Carousel.Caption>
                 </Carousel.Item>
-            </Carousel>
-            <h4>{pokemon.name}</h4>
+    </Carousel>*/}
         </>
     );
 }
