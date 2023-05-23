@@ -13,13 +13,13 @@ function Detalhes({props}){
     
     return (
         <Container>
-            <h1>Página de detalhes de {variavel == null ? id : variavel.name}</h1>
             <Row>
                 <Col md={4}>
                     <Resumo pokemon={variavel == null ? {name: "eu"} : variavel} />
+                    <h1 className='text-center'>{variavel == null ? id : variavel.name}</h1>
                 </Col>
                 <Col md={8}>
-                    <Estatistica pokemon={variavel} />
+                    <Estatistica pokemon={variavel == null ? {name: "eu"} : variavel} />
                 </Col>
             </Row>
             <Row>

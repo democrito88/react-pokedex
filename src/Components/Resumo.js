@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Carousel } from 'react-bootstrap';
+import React from 'react';
+import { Carousel, Col, Row } from 'react-bootstrap';
 
 function Resumo({ pokemon }) {
 
     let a = [];
-    Object.values(pokemon).forEach((prop) => {
+    let tipos = [];
+    Object.values(pokemon).forEach((prop, key) => {
         if (prop instanceof Object) {
             Object.values(prop).forEach(prop => {
                 if (prop !== null && prop.length > 70) {
@@ -12,13 +13,21 @@ function Resumo({ pokemon }) {
                 }
             })
         }
+        if(key === 16){
+            Object.values(prop).forEach(prop => {
+                tipos.push(prop.type.name);
+            });
+        }
     });
 
+    console.log(tipos);
+
     return (
+        <>
         <Carousel>
             {a.map(e => {
                 return(
-                <Carousel.Item>
+                    <Carousel.Item>
                     <img
                         className="d-block w-100"
                         src={e}
@@ -28,6 +37,15 @@ function Resumo({ pokemon }) {
                 );
             })}
         </Carousel>
+        <Row>
+            <Col sm={6}>
+                <img src={"../../tipos/"+(pokemon == null ? "" : tipos[0]+'.webp')} width={40} alt="" />
+            </Col>
+            <Col sm={6}>
+                {(pokemon == null ? "" : tipos[1]) ? <img src={"../../tipos/"+(pokemon == null ? "" : tipos[1]+'.webp')} width={40} alt="" /> : ""}
+            </Col> 
+        </Row>
+        </>
     );
 }
 
