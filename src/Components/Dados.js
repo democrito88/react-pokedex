@@ -20,6 +20,7 @@ function Dados(props){
         <>
         <Card>
             <Card.Body>
+                <h3>Dados</h3>
                 <ListGroup>
                     <ListGroup.Item>Height: {dados.altura}"</ListGroup.Item>
                     <ListGroup.Item>Weight: {dados.peso}lbs</ListGroup.Item>
