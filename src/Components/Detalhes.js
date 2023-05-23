@@ -14,20 +14,24 @@ function Detalhes({props}){
     return (
         <Container>
             <Row>
-                <Col md={4}>
+                <Col sm={12} md={4} className='my-2'>
                     <Resumo pokemon={variavel == null ? {name: "eu"} : variavel} />
-                    <h1 className='text-center'>{variavel == null ? id : variavel.name}</h1>
                 </Col>
-                <Col md={8}>
+                <Col sm={12} md={8} className='my-2'>
                     <Estatistica pokemon={variavel == null ? {name: "eu"} : variavel} />
                 </Col>
             </Row>
             <Row>
-                <Col md={4}>
-                    <Formas pokemon={variavel} />
+                <Col sm={12} md={4} className='my-2'>
+                    <Formas pokemon={variavel == null ? {name: "eu"} : variavel} />
                 </Col>
-                <Col md={8}>
+                <Col sm={12} md={8} className='my-2'>
                     <Dados pokemon={variavel == null ? {name: "eu"} : variavel} />
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={12} md={6} className='my-2'>
+                    
                 </Col>
             </Row>
         </Container>
