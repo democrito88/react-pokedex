@@ -20,8 +20,6 @@ function Resumo({ pokemon }) {
         }
     });
 
-    console.log(tipos);
-
     return (
         <>
         <Carousel>

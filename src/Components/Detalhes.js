@@ -27,7 +27,7 @@ function Detalhes({props}){
                     <Formas pokemon={variavel} />
                 </Col>
                 <Col md={8}>
-                    <Dados pokemon={variavel} />
+                    <Dados pokemon={variavel == null ? {name: "eu"} : variavel} />
                 </Col>
             </Row>
         </Container>
