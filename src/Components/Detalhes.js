@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Col, Container, Row} from 'react-bootstrap';
 import Dados from './Dados';
 import Estatistica from './Estatistica';
@@ -9,16 +9,11 @@ import { useFetch } from '../hooks/useFetch';
 
 function Detalhes({props}){
     const {id} = useParams();
-    var {variavel, setVariavel} = useState();
-    fetch("https://pokeapi.co/api/v2/pokemon/"+id)
-    .then(result => result.json())
-    .then(pokemon=>{console.log(pokemon);
-    setVariavel(pokemon.data)})
+    var {variavel, trabalhando} = useFetch("https://pokeapi.co/api/v2/pokemon/"+id);
     
-
     return (
         <Container>
-            <h1>Página de detalhes de {id}</h1>
+            <h1>Página de detalhes de {variavel == null ? id : variavel.name}</h1>
             <Row>
                 <Col md={4}>
                     <Resumo pokemon={variavel == null ? {name: "eu"} : variavel} />
