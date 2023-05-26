@@ -6,8 +6,9 @@ import Formas from './Formas';
 import Resumo from './Resumo';
 import { useParams } from 'react-router';
 import { useFetch } from '../hooks/useFetch';
+import Linhagem from'./Linhagem';
 
-function Detalhes({props}){
+function Detalhes(){
     const {id} = useParams();
     var {variavel, trabalhando} = useFetch("https://pokeapi.co/api/v2/pokemon/"+id);
     
@@ -31,7 +32,7 @@ function Detalhes({props}){
             </Row>
             <Row>
                 <Col sm={12} md={6} className='my-2'>
-                    
+                <Linhagem pokemon={variavel == null ? {name: "eu"} : variavel}  />
                 </Col>
             </Row>
         </Container>

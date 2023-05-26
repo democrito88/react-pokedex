@@ -4,6 +4,8 @@ import axios from "axios";
 export function useFetch<T = unknown>(url: string){
     const [variavel, setVariavel] = useState<T | null>(null);
     const [trabalhando, setTrabalhando] =  useState(true);
+    const [cadeia, setCadeia] = useState(true);
+    const [trabalhando2, setTrabalhando2] =  useState(true);
     
     useEffect(() => {
         axios.get(url)
