@@ -2,6 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { Badge, Card } from "react-bootstrap";
 
+function montaCadeia(cadeia, nome){
+    nome.push(new Object(cadeia.species).name);
+
+    let evolves_to = new Object(cadeia.evolves_to);
+    
+    if(evolves_to.length === 0){
+        return nome;
+    }
+
+    for(let i = 0; i < evolves_to.length; i++){
+        nome.concat(montaCadeia(evolves_to[i], nome));
+    }
+
+    return nome;
+}
 
 function Linhagem(props) {
     let parametro = new Object(props);
@@ -11,8 +26,8 @@ function Linhagem(props) {
     let cadeiaEvolutiva = useFetch(evolutionChainUrl);  
     let cadeia = new Object(new Object(cadeiaEvolutiva.variavel).chain);
     let nome = [];
-    nome[0] = new Object(cadeia.species).name;
-    nome[1] = new Object(new Object(new Object(cadeia.evolves_to)[0]).species).name;
+    console.log("cadeia:");
+    console.log(montaCadeia(cadeia, nome));
     
     setTimeout(console.log(nome[0], nome[1]), 5000);
     
