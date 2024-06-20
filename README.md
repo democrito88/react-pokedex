@@ -1,4 +1,4 @@
-# React-Pokedex :video-game:
+# React-Pokedex 🎮
 
 ![Version](https://img.shields.io/static/v1?label=version&message=1.0.0&color=red)
 ![License](https://img.shields.io/static/v1?label=license&message=MIT&color=green)
