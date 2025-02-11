@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useFetch } from "../hooks/useFetch";
-import { Badge, Card } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 
 function montaCadeia(cadeia, nome){
     nome.push(new Object(cadeia.species).name);

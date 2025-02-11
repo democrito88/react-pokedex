@@ -6,9 +6,9 @@ function Estatistica(props){
 
     Object.values(props.pokemon).forEach((propriedade, key) => {
         if(key === 15){
-            Object.values(propriedade).forEach((status) => {
-                stats.push({name: status.stat.name, stats: status.base_stat});
-            })
+            Object.values(propriedade).forEach((status) => 
+                setStats([...stats, {name: status.stat.name, stats: status.base_stat}])
+            )
         }
     });
 

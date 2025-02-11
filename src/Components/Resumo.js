@@ -14,9 +14,7 @@ function Resumo({ pokemon }) {
             })
         }
         if(key === 16){
-            Object.values(prop).forEach(prop => {
-                tipos.push(prop.type.name);
-            });
+            Object.values(prop).forEach(prop => tipos.push(prop.type.name));
         }
     });
 

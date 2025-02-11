@@ -13,6 +13,9 @@ function Detalhes(){
     var {variavel, trabalhando} = useFetch("https://pokeapi.co/api/v2/pokemon/"+id);
     
     return (
+        trabalhando ? 
+        <p>Carregando</p>
+        :
         <Container>
             <Row>
                 <Col sm={12} md={4} className='my-2'>

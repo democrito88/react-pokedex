@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 
 function Dados(props){
@@ -7,13 +7,14 @@ function Dados(props){
         altura: "",
         peso: ""
     }
-    Object.values(props.pokemon).map((propriedade, key) => {
+    dados = Object.values(props.pokemon).map((propriedade, key) => {
         if(key === 4){
             dados.altura =  propriedade;
         }
         if(key === 17){
             dados.peso = propriedade;
         }
+        return dados;
     });
 
     return(
