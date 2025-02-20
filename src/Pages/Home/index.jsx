@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import Cartao from "./Cartao";
+import Cartao from "../../Components/Cartao";
 import { useState, useEffect } from 'react';
 
 function Home() {
@@ -23,9 +23,11 @@ function Home() {
     return (
         <Container>
             <Row>
-                {pokemons.map((pokemon, indice) => {
-                    return <Col className='mb-3' sm={2} key={indice}><Cartao props={pokemon} /></Col>;
-                })}
+                {pokemons.map((pokemon, indice) => 
+                    <Col className='mb-3' sm={2} key={indice}>
+                        <Cartao props={pokemon} />
+                    </Col>
+                )}
             </Row>
         </Container>
     );

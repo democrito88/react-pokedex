@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Cartao({ props }) {
     console.log(props.url);
-    const { variavel, trabalhando } = useFetch(props.url);
+    const [ variavel, trabalhando ] = useFetch(props.url);
 
     return (
         <Card>

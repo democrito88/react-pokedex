@@ -4,13 +4,10 @@ import { Card, Col, ProgressBar, Row } from 'react-bootstrap';
 function Estatistica(props){
     const [stats, setStats] = useState([]);
 
-    Object.values(props.pokemon).forEach((propriedade, key) => {
-        if(key === 15){
-            Object.values(propriedade).forEach((status) => 
-                setStats([...stats, {name: status.stat.name, stats: status.base_stat}])
-            )
-        }
-    });
+    useState(() => {
+        props.stats.forEach(status => 
+            setStats(stats => [...stats, {name: status.stat.name, stats: status.base_stat}]));
+    }, []);
 
     return(
         <Card>
@@ -18,7 +15,7 @@ function Estatistica(props){
                 <Card.Title>Stats</Card.Title>
                 {stats.map((status, key) => {
                     return(
-                        <Row>
+                        <Row key={key}>
                             <Col>
                                 <label>{status.name}</label>
                                 <ProgressBar>

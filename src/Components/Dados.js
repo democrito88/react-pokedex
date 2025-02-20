@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 
 function Dados(props){
-    //const [altura, setAltura] = useState();
-    let dados = {
-        altura: "",
-        peso: ""
-    }
-    dados = Object.values(props.pokemon).map((propriedade, key) => {
-        if(key === 4){
-            dados.altura =  propriedade;
-        }
-        if(key === 17){
-            dados.peso = propriedade;
-        }
-        return dados;
+    const [dados, setDados] = useState({
+        altura: 0,
+        peso: 0
     });
+
+   useEffect(() =>  {
+        let altura = props.pokemon.height*2.54;
+        let peso = props.pokemon.weight*0.45;
+
+        setDados(dados => ({
+            ...dados,
+            altura: altura,
+            peso: peso
+        }));
+    }, []);
 
     return(
         <>
@@ -23,8 +24,8 @@ function Dados(props){
             <Card.Body>
                 <h3>Dados</h3>
                 <ListGroup>
-                    <ListGroup.Item>Height: {dados.altura}"</ListGroup.Item>
-                    <ListGroup.Item>Weight: {dados.peso}lbs</ListGroup.Item>
+                    <ListGroup.Item>Altura: {dados.altura}cm</ListGroup.Item>
+                    <ListGroup.Item>Peso: {dados.peso}Kg</ListGroup.Item>
                 </ListGroup>
             </Card.Body>
         </Card>
