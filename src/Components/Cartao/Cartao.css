@@ -1,0 +1,9 @@
+.texto-numero{
+    font-size: large;
+    font-weight: 500;
+    color: #999;
+}
+
+.texto-cartao{
+    text-decoration: none !important;
+}

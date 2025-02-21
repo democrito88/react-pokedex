@@ -12,31 +12,42 @@ function Resumo({ pokemon }) {
 
     return (
         pokemon ?
-        <>
-        <Carousel>
-            {sprites.map((e, key) => {
-                return(
-                    <Carousel.Item key={key}>
-                        <img
-                            className="d-block w-100"
-                            src={e}
-                            alt="First slide"
+            <>
+                <Carousel>
+                    {sprites.length > 0 ?
+                        sprites.map((e, key) => {
+                            return (
+                                <Carousel.Item key={key}>
+                                    <img
+                                        className="d-block w-100"
+                                        src={e}
+                                        alt="First slide"
+                                        width={400}
+                                    />
+                                </Carousel.Item>
+                            );
+                        })
+                        :
+                        <Carousel.Item key={0}>
+                            <img
+                                className="d-block w-100"
+                                src={`https://fakeimg.pl/300x300?text=carregando...`}
+                                alt='Carregando...'
                             />
-                    </Carousel.Item>
-                );
-            })}
-        </Carousel>
-        <h1 className='text-center'>{pokemon.name}</h1>
-        <Row className='d-flex flex-row justify-content-center gap-1'>
-            {types.map(type =>
-                <Col sm={2} key={type}>
-                    <img src={"../../tipos/"+(type+'.webp')} width={40} alt={type} />
-                </Col>
-            )}
-        </Row>
-        </>
-        :
-        <p>Pokemon não encontrado</p>
+                        </Carousel.Item>
+                    }
+                </Carousel>
+                <h1 className='text-center'>{pokemon.name}</h1>
+                <Row className='d-flex flex-row justify-content-center gap-1'>
+                    {types.map(type =>
+                        <Col sm={2} key={type}>
+                            <img src={"../../tipos/" + (type + '.webp')} width={40} alt={type} />
+                        </Col>
+                    )}
+                </Row>
+            </>
+            :
+            <p>Pokemon não encontrado</p>
     );
 }
 

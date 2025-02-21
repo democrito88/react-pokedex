@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import Cartao from "../../Components/Cartao";
 import { useState, useEffect } from 'react';
+import Cartao from "../../Components/Cartao";
 
 function Home() {
     const [pokemons, setPokemons] = useState([]);
@@ -24,7 +24,7 @@ function Home() {
         <Container>
             <Row>
                 {pokemons.map((pokemon, indice) => 
-                    <Col className='mb-3' sm={2} key={indice}>
+                    <Col className='mb-3' sm={3} key={indice}>
                         <Cartao props={pokemon} />
                     </Col>
                 )}
