@@ -1,29 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col, Container } from "react-bootstrap";
-import { useState, useEffect } from 'react';
 import Cartao from "../../Components/Cartao";
+import { PokemonContext } from "../../contexts/PokemonContext";
 
 function Home() {
-    const [pokemons, setPokemons] = useState([]);
+    const { pokemonList, loadingList } = useContext(PokemonContext);
 
-    useEffect(() => {
-
-        const requestOptions = {
-            method: 'GET',
-            redirect: 'follow'
-        };
-
-        fetch("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151", requestOptions)
-            .then(response => response.text())
-            .then(result => setPokemons(JSON.parse(result).results))
-            .catch(error => console.log('error', error));
-    },
-        []);
+    if (loadingList) return <p>Carregando Pokémons...</p>;
 
     return (
         <Container>
             <Row>
-                {pokemons.map((pokemon, indice) => 
+                {pokemonList.map((pokemon, indice) => 
                     <Col className='mb-3' sm={3} key={indice}>
                         <Cartao props={pokemon} />
                     </Col>

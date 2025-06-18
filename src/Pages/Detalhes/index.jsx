@@ -1,37 +1,40 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {Container} from "react-bootstrap";
 import Dados from "../../Components/Dados";
 import Estatistica from "../../Components/Estatistica";
 import Resumo from "../../Components/Resumo";
 import Linhagem from "../../Components/Linhagem";
 import { useParams } from "react-router";
-import { useFetch } from "../../hooks/useFetch";
+import { PokemonContext } from "../../contexts/PokemonContext";
 import "./Detalhes.css";
 
 function Detalhes() {
   const { id } = useParams();
-  var [variavel, trabalhando] = useFetch(
-    "https://pokeapi.co/api/v2/pokemon/" + id
-  );
+  const { selectedPokemon, loadingSelected, fetchPokemonById } = useContext(PokemonContext);
 
-  return trabalhando ? (
-    <p>Carregando</p>
-  ) : (
+  useEffect(() => {
+    fetchPokemonById(id);
+  }, [id]);
+
+  if (loadingSelected) return <p>Carregando detalhes...</p>;
+  if (!selectedPokemon) return <p>Pokémon não encontrado.</p>;
+
+  return (
     <Container className="d-flex flex-row container">
       <div className="d-flex flex-column align-items-center gap-2 border rounded-2 resumo">
-        <Resumo pokemon={variavel == null ? { name: "eu" } : variavel} />
+        <Resumo pokemon={selectedPokemon} />
         <Linhagem
-          url={variavel == null ? { name: "eu" } : variavel.species.url}
+          url={selectedPokemon.species.url}
         />
       </div>
       <div className="d-flex flex-column align-items-center gap-3 estatisticas">
         <Estatistica
-          stats={variavel == null ? { name: "eu" } : variavel.stats}
+          stats={selectedPokemon.stats}
         />
-        <Dados pokemon={variavel == null ? { name: "eu" } : variavel} />
+        <Dados pokemon={selectedPokemon} />
       </div>
     </Container>
-  );
+  )
 }
 
 export default Detalhes;
