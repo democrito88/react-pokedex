@@ -11,8 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      <Navegacao />
       <BrowserRouter>
+        <Navegacao />
         <Routes>
           <Route element={<Home />} path='/' />
           <Route element={<Detalhes />} path='/detalhes/:id' />
